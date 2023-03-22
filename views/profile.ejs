@@ -8,5 +8,17 @@
 </head>
 <body>
     profile
+    <a href="/logout">Logout</a>
+    <a href="/tweet">Tweet</a>
+    <section>
+        <% post.forEach( el => { %>
+            <div class='container' data-id='<%=el._id%>'>
+                <p><%= el.text %></p>
+                <span><button><a href="/profile" class='del'> delete</a></button> </span>
+                <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
+                <span class="like"><a href="#">like</a></span><span><%= el.likes %></span>
+            </div>
+        <% }) %>   
+    </section>
 </body>
 </html>
