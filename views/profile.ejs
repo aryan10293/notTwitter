@@ -18,18 +18,17 @@
             <li class="nav"><a href="/logout" >Logout</a></li>
             <li class="nav tweet"><a href="/tweet" class="fuck">Tweet</a></li>
         </ul>
-        <section class="">
-            <h1 class="text-3xl">Profile</h1>
+        <section class="post">
             <% post.forEach( el => { %>
                 <div class='container' data-id='<%=el._id%>'>
+                    <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
                     <p><%= el.text %></p>
-                    <span><button><a href="/profile" class='del'> delete</a></button> </span>
                     <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
                     <span class="like"><a href="#">like</a></span><span><%= el.likes %></span>
                 </div>
             <% }) %>   
         </section>
-        <section>
+        <section class="snookabutt">
             <div>
                 <h3>Who to follow</h3>
                 <!-- going to be a random users whoi logged in user doesnt follow -->

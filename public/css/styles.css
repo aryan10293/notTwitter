@@ -1,3 +1,8 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 .container-profile{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -8,6 +13,10 @@ a{
 }
 li{
     list-style: none;
+}
+.ul-nav{
+    border: solid .5px black;
+    padding: 20px;
 }
 .nav{
     padding: 30px;
@@ -23,6 +32,20 @@ li{
     justify-content: center;
     align-items: center;
 }
+p,span{
+    margin: 5px;
+}
 .fuck{
     color: white;
+}
+.container{
+    border: solid .5px black;
+    padding: 5px;
+}
+.post{
+    border: solid .5px black;
+}
+.snookabutt{
+    border: solid .5px black;
+    height: 100%;
 }

@@ -9,6 +9,7 @@ router.get('/tweet', homeController.getTweet)
 router.get('/login', authController.getLogin)
 router.get('/createaccount', authController.getCreateAccount)
 router.get('/profile', ensureAuth, homeController.getProfile)
+router.get('/profile/:user',ensureAuth, homeController.getUser)
 router.get('/feed', ensureAuth, homeController.getFeed)
 // render latest post in the feed
 //router.get('/feed', ensureAuth, homeController.feed)

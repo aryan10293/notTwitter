@@ -6,6 +6,7 @@ const tweetSchema = new mongoose.Schema({
   likes: {type: Number, required: true},
   retweets: {type: Number, required: true},
   userId: {type: String, required: true},
+  name: {type:String, required: true},
   deleted: {type: Boolean, required: true}
 });
 

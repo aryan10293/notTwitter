@@ -9,6 +9,7 @@ module.exports = {
                 likes: 0,
                 retweets: 0,
                 userId: req.user.id,
+                name: req.user.userName,
                 deleted: false
             })
             console.log('lol')
