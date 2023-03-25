@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/main.js" defer></script>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <title>Document</title>
 </head>
@@ -23,8 +24,8 @@
                 <div class='container' data-id='<%=el._id%>'>
                     <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
                     <p><%= el.text %></p>
-                    <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
-                    <span class="like"><a href="#">like</a></span><span><%= el.likes %></span>
+                    <span class="retweet"><a>Retweet</a></span><span><%= el.retweets %></span>
+                    <span class="like"><a href="">like</a></span><span><%= el.likes %></span>
                 </div>
             <% }) %>   
         </section>
