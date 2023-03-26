@@ -16,10 +16,10 @@ module.exports = {
             await Post.findOneAndUpdate(
                 {_id: req.body.tweet},
                 {
-                    $inc: { likes: 1 },
+                    $push: { likes: req.user.id },
                 }
             )
-            res.redirect(200, '/feed')
+            res.redirect(304, '/feed')
             // how to refresh page aftwe a update in mongoose
         } catch(err){
             console.error(err)

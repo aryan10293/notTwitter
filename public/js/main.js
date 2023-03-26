@@ -4,7 +4,6 @@ likes.forEach(x => {
 })
 async function addLike(){
     const itemText = this.parentNode.dataset.id
-    location.reload()
     console.log(itemText)
     try{
         const response = await fetch('/like', {
@@ -21,5 +20,6 @@ async function addLike(){
     } catch(err){
         console.error(err)
     }
+    location.reload()
 }
 console.log(likes)

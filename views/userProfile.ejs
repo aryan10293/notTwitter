@@ -24,7 +24,7 @@
                     <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
                     <p><%= el.text %></p>
                     <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
-                    <span class="like"><a href="#">like</a></span><span><%= el.likes %></span>
+                    <span class="like"><a href="#">like</a></span><span><%= el.likes.length %></span>
                 </div>
             <% }) %>   
         </section>

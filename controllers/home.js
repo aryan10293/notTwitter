@@ -10,7 +10,7 @@ module.exports = {
     },
     getProfile: async (req,res) => {
         //sort from newest to oldedt
-        console.log(req.user.id)
+        // console.log(req.user.id)
         const userPost = await Post.find({userId: req.user.id})
         // console.log(userPost)
         res.render("profile.ejs", {post: userPost })
@@ -19,13 +19,13 @@ module.exports = {
         //sort from newest to oldedt
         const followersAndYourPosts = await Post.find()
         const blah = await User.find({_id: req.user.id})
-        console.log(followersAndYourPosts)
-        console.log(blah[0].likedPost)
+        // console.log(followersAndYourPosts)
+        // console.log(blah[0].likedPost)
         res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost })
     },
     getUser: async (req,res) => {
         //sort from newest to oldedt
-        console.log('lol')
+        // console.log('lol')
         const userPost = await Post.find({name: req.params.user})
         // const followersAndYourPosts = await Post.find()
         // const blah = await User.find()
