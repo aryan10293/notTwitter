@@ -7,18 +7,20 @@ module.exports = {
         // const lol = Post.findOne({_id: req.body.tweet})
         // console.log(lol)
         try{
-            await Post.findOneAndUpdate(
-                {_id: req.body.tweet},
-                {
-                    $inc: { likes: 1 },
-                }
-            )
             await User.findOneAndUpdate(
                 {_id: req.user.id},
                 {
                     $push: { likedPost: req.body.tweet },
                 }
             )
+            await Post.findOneAndUpdate(
+                {_id: req.body.tweet},
+                {
+                    $inc: { likes: 1 },
+                }
+            )
+            res.redirect(200, '/feed')
+            // how to refresh page aftwe a update in mongoose
         } catch(err){
             console.error(err)
         }

@@ -4,10 +4,11 @@ likes.forEach(x => {
 })
 async function addLike(){
     const itemText = this.parentNode.dataset.id
+    location.reload()
     console.log(itemText)
     try{
         const response = await fetch('/like', {
-            method: 'put',
+            method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'tweet': itemText
@@ -15,7 +16,8 @@ async function addLike(){
             })
         const data = await response.json()
         console.log(data)
-       window.location.reload()
+        console.log('hey')
+        console.log('hoe')
     } catch(err){
         console.error(err)
     }

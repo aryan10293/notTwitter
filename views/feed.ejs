@@ -25,7 +25,11 @@
                     <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
                     <p><%= el.text %></p>
                     <span class="retweet"><a>Retweet</a></span><span><%= el.retweets %></span>
-                    <span class="like"><a href="">like</a></span><span><%= el.likes %></span>
+                    <% if( user.includes(el._id) ){ %>
+                        <span class="unlike">unlike</span><span><%= el.likes %></span>
+                    <% } else{ %>
+                        <span  class="like" >like</span><span><%= el.likes %></span>
+                    <% } %> %>
                 </div>
             <% }) %>   
         </section>

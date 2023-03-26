@@ -18,9 +18,10 @@ module.exports = {
     getFeed: async (req,res) => {
         //sort from newest to oldedt
         const followersAndYourPosts = await Post.find()
-        const blah = await User.find()
+        const blah = await User.find({_id: req.user.id})
         console.log(followersAndYourPosts)
-        res.render("feed.ejs", {post: followersAndYourPosts, user: blah })
+        console.log(blah[0].likedPost)
+        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost })
     },
     getUser: async (req,res) => {
         //sort from newest to oldedt
