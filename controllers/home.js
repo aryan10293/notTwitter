@@ -8,10 +8,17 @@ module.exports = {
     getTweet: (req,res) => {
         res.render("tweet.ejs")
     },
-    getComment: (req,res) => {
+    getTweetPost: (req,res) => {
         console.log(req.params.id)
-        // get the id to use for nect page to render and add to database to you can know what tweet to post it to. lets get this money this week
-        res.render("comment.ejs")
+        res.render("tweetContent.ejs")
+    },
+    getComment: async (req,res) => {
+        //console.log(req.params.id)
+        const userPost = await Post.find({_id: req.params.id})
+        console.log(req.user.userName)
+        console.log(userPost)
+        // get the id to use for nect page to render and add to database to you can know what tweet to post it to.
+        res.render("comment.ejs", {tweet: userPost})
     },
     getProfile: async (req,res) => {
         //sort from newest to oldedt

@@ -20,6 +20,7 @@ module.exports = {
         }
     },
     createComment: async (req,res) => {
+        console.log(req.params)
         try{
             await Comment.create({
                 text: req.body.comment,
@@ -29,10 +30,10 @@ module.exports = {
                 userId: req.user.id,
                 name: req.user.userName,
                 deleted: false,
-                tweetId: req.body.id
+                tweetId: req.body.tweetid
             })
             console.log('comment has been posted')
-            res.redirect("/viewTweet/id");
+            res.redirect("/feed");
         } catch(err){
             console.error(err)
         }

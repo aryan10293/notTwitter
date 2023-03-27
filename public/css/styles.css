@@ -49,3 +49,6 @@ p,span{
     border: solid .5px black;
     height: 100%;
 }
+#tweetid{
+    visibility: hidden ;
+}

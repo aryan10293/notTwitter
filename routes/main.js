@@ -14,6 +14,7 @@ router.get('/profile/:user',ensureAuth, homeController.getUser)
 router.get('/feed', ensureAuth, homeController.getFeed)
 //router.get('/comment/:id',ensureAuth, homeController.comment)
 router.get('/:user/:id', ensureAuth, homeController.getComment)
+router.get('/:id', ensureAuth, homeController.getTweetPost)
 router.get("/logout", authController.logout)
 
 

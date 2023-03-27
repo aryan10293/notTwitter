@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Document</title>
 </head>
 <body>
     <form action="/postComment" method="POST">
         <textarea name="comment" id="comment" cols="30" rows="10" placeholder="leave a comment...."></textarea>
         <button type="submit">Post Comment</button>
+        <input type="text" name="tweetid" value="<%= tweet[0]._id %>" id='tweetid'>
     </form>
 </body>
 </html>
