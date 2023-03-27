@@ -8,30 +8,25 @@ module.exports = {
     getTweet: (req,res) => {
         res.render("tweet.ejs")
     },
+    getComment: (req,res) => {
+        console.log(req.params.id)
+        // get the id to use for nect page to render and add to database to you can know what tweet to post it to. lets get this money this week
+        res.render("comment.ejs")
+    },
     getProfile: async (req,res) => {
         //sort from newest to oldedt
-        // console.log(req.user.id)
         const userPost = await Post.find({userId: req.user.id})
-        // console.log(userPost)
         res.render("profile.ejs", {post: userPost })
     },
     getFeed: async (req,res) => {
         //sort from newest to oldedt
         const followersAndYourPosts = await Post.find()
         const blah = await User.find({_id: req.user.id})
-        // console.log(followersAndYourPosts)
-        // console.log(blah[0].likedPost)
         res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost })
     },
     getUser: async (req,res) => {
-        //sort from newest to oldedt
-        // console.log('lol')
         const userPost = await Post.find({name: req.params.user})
-        // const followersAndYourPosts = await Post.find()
-        // const blah = await User.find()
-        // console.log(blah)
         res.render("userProfile.ejs", {post: userPost })
-        // res.render("feed.ejs", {post: followersAndYourPosts, user: blah })
     },
 }
 // set varibles in ejs

@@ -24,12 +24,14 @@
                 <div class='container' data-id='<%=el._id%>'>
                     <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
                     <p><%= el.text %></p>
+                    <button><a href="/<%=el.name%>/<%=el._id%>">Comment</a></button>
                     <span class="retweet"><a>Retweet</a></span><span><%= el.retweets %></span>
                     <% if( user.includes(el._id) ){ %>
-                        <span class="unlike">unlike <%= el.likes.length-1 %></span>
+                        <button class="unlike">unlike <%= el.likes.length-1 %></button>
                     <% } else{ %>
-                        <span  class="like" >like <%= el.likes.length-1 %></span>
+                        <button  class="like" >like <%= el.likes.length-1 %></button>
                     <% } %> %>
+                    <a href="/<%=el.name%>/<%=el._id%>"><button>View Tweet</button></a>
                 </div>
             <% }) %>   
         </section>

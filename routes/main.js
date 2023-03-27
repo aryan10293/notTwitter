@@ -12,14 +12,15 @@ router.get('/createaccount', authController.getCreateAccount)
 router.get('/profile', ensureAuth, homeController.getProfile)
 router.get('/profile/:user',ensureAuth, homeController.getUser)
 router.get('/feed', ensureAuth, homeController.getFeed)
-// render latest post in the feed
-//router.get('/feed', ensureAuth, homeController.feed)
+//router.get('/comment/:id',ensureAuth, homeController.comment)
+router.get('/:user/:id', ensureAuth, homeController.getComment)
 router.get("/logout", authController.logout)
 
 
 router.post('/createaccount', authController.postCreateAccount)
 router.post('/login', authController.postLogin)
 router.post('/postTweet', postsController.createTweet)
+router.post('/postComment', postsController.createComment)
 
 router.put('/like', editController.addLike)
 router.put('/unlike', editController.unlike)
