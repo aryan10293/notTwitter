@@ -27,7 +27,20 @@ module.exports = {
     },
     unlike: async (req,res) => {
         try{
-            
+            await User.findOneAndUpdate(
+                {_id: req.user.id},
+                {
+                    $pull: { likedPost: req.body.tweet },
+                }
+            )
+            await Post.findOneAndUpdate(
+                {_id: req.body.tweet},
+                {
+                    $pull: { likes: req.user.id },
+                }
+            )
+            res.redirect(304, '/feed')
+            // how to refresh page aftwe a update in mongoose
         } catch(err){
             console.error(err)
         }
