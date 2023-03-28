@@ -33,7 +33,7 @@ module.exports = {
                 tweetId: req.body.tweetid
             })
             console.log('comment has been posted')
-            res.redirect("/feed");
+            res.redirect(`/${req.user.userName}/tweet/${req.body.tweetid}`);
         } catch(err){
             console.error(err)
         }

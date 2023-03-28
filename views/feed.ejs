@@ -31,17 +31,35 @@
                     <% } else{ %>
                         <button  class="like" >like <%= el.likes.length-1 %></button>
                     <% } %> %>
-                    <a href="/<%=el._id%>"><button>View Tweet</button></a>
+                    <a href="/<%=el.name%>/tweet/<%=el._id%>"><button>View Tweet</button></a>
                 </div>
             <% }) %>   
         </section>
         <section class="snookabutt">
-            <div>
+            <div class="follow-container">
                 <h3>Who to follow</h3>
+                <ul class="ul-container">
+                    <% for(let i = 0; i<3; i++) {%>
+                        <li class='li-container' data-id='<%=allUsers[i]._id%>'>
+                            <span><a href="/profile/<%=allUsers[i].userName%>"><%=allUsers[i].userName%></a></span>
+                            <button>Follow</button>
+                        </li>
+                     <% } %>
+                </ul>
                 <!-- going to be a random users whoi logged in user doesnt follow -->
             </div>
-            <div>
+            <div class="follow-container">
                 <h3>What's happening</h3>
+                <ul class="ul-container">
+                    <% for(let i = 0; i<4; i++) {%>
+                        <li class='li-container' data-id='<%=allUsers[i]._id%>'>
+                            <span><a href="/profile/<%=popular[i].userName%>"><%=popular[i].name%></a></span>
+                            <p><%=popular[i].text%></p>
+                            <button><a href="/<%=popular[i].name%>/tweet/<%=popular[i]._id%>">View tweet</a></button>
+                        </li>
+                     <% } %>
+            
+                </ul>
                 <!-- random tweets from users you dont follow-->
             </div>
         </section>

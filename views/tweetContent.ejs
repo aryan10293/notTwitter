@@ -4,9 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/main.js" defer></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <title>Document</title>
 </head>
 <body>
-    lol
-</body>
+    <main class="container-profile">
+        <ul class="ul-nav">
+            <li class="nav"><a href="/feed" >Home</a></li>
+            <li class="nav"><a href="/explore" >Explore</a></li>
+            <li class="nav"><a href="/bookmarks" >Bookmarks</a></li>
+            <li class="nav"><a href="/profile" >Profile</a></li>
+            <li class="nav"><a href="/logout" >Logout</a></li>
+            <li class="nav tweet"><a href="/tweet" class="fuck">Tweet</a></li>
+        </ul>
+        <section class="post">
+            <% post.forEach( el => { %>
+                <div class='container' data-id='<%=el._id%>'>
+                    <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
+                    <p><%= el.text %></p>
+                    <button><a href="/<%=el.name%>/<%=el._id%>">Comment</a></button>
+                    <span class="retweet"><a>Retweet</a></span><span><%= el.retweets %></span>
+                    <% if( user.includes(el._id) ){ %>
+                        <button class="unlike">unlike <%= el.likes.length-1 %></button>
+                    <% } else{ %>
+                        <button  class="like" >like <%= el.likes.length-1 %></button>
+                    <% } %> %>
+                    <a href="/<%=el._id%>"><button>View Tweet</button></a>
+                </div>
+            <% }) %>  
+            <div>
+                <form action="/postComment" method="POST">
+                    <textarea name="comment" id="comment" cols="90" rows="2" placeholder="leave a comment...."></textarea>
+                    <button type="submit">Post Comment</button>
+                    <input type="text" name="tweetid" value="<%= post[0]._id %>" id='tweetid'>
+                </form>
+            </div>
+            <div>
+                <h2>Comments</h2>
+                <% comments.forEach( el => { %>
+                    <div class='container' data-id='<%=el._id%>'>
+                        <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
+                        <p><%= el.text %></p>
+                    </div>
+                <% }) %>  
+            </div> 
+        </section>
+        <section class="snookabutt">
+            <div>
+                <h3>Who to follow</h3>
+                <!-- going to be a random users whoi logged in user doesnt follow -->
+            </div>
+            <div>
+                <h3>What's happening</h3>
+                <!-- random tweets from users you dont follow-->
+            </div>
+        </section>
+    </main>
+    </body>
 </html>

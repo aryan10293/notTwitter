@@ -52,3 +52,19 @@ p,span{
 #tweetid{
     visibility: hidden ;
 }
+.follow-container{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5%;
+    border: 1px solid #479ae9;
+}
+.ul-container, .li-container{
+    margin: 5px; 
+}
+.li-container{
+    display: flex;
+    justify-content: space-between;
+}
+main{
+    height: 100vh;
+}
