@@ -38,8 +38,9 @@ module.exports = {
        console.log(me[0].following)
         const followersAndYourPosts = await Post.find()
         const blah = await User.find({_id: req.user.id})
+        console.log(me)
         const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
-        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0].following})
+        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0] })
     },
     getUser: async (req,res) => {
         const userPost = await Post.find({name: req.params.user})
