@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   likedPost: { type: Array},
   followers: { type: Array},
+  following: { type: Array},
   dob: {type: Date},
   password: String,
 });

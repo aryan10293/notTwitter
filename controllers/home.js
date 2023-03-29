@@ -34,11 +34,12 @@ module.exports = {
         //sort from newest to oldedt
         const allPeople = await User.find()
        // console.log(allPeople)
+       const me = await User.find({_id: req.user.id})
+       console.log(me[0].following)
         const followersAndYourPosts = await Post.find()
         const blah = await User.find({_id: req.user.id})
         const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
-        console.log(popularPost)
-        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost})
+        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0].following})
     },
     getUser: async (req,res) => {
         const userPost = await Post.find({name: req.params.user})

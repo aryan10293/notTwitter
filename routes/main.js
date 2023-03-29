@@ -25,4 +25,6 @@ router.post('/postComment', postsController.createComment)
 
 router.put('/like', editController.addLike)
 router.put('/unlike', editController.unlike)
+router.put('/follow', editController.follow)
+router.put('/unfollow', editController.unfollow)
 module.exports = router;

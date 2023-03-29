@@ -45,5 +45,46 @@ module.exports = {
             console.error(err)
         }
     },
-
+    follow: async (req,res) => {
+        try{
+            await User.findOneAndUpdate(
+                {_id: req.body.tweet},
+                {
+                    $push: { followers: req.user.id },
+                }
+            )
+            await User.findOneAndUpdate(
+                {_id: req.user.id},
+                {
+                    $push: { following: req.body.tweet },
+                }
+            )
+            console.log('follow sucess')
+            res.redirect(304, '/feed')
+            // how to refresh page aftwe a update in mongoose
+        } catch(err){
+            console.error(err)
+        }
+    },
+    unfollow: async (req,res) => {
+        try{
+            await User.findOneAndUpdate(
+                {_id: req.body.tweet},
+                {
+                    $pull: { followers: req.user.id },
+                }
+            )
+            await User.findOneAndUpdate(
+                {_id: req.user.id},
+                {
+                    $pull: { following: req.body.tweet },
+                }
+            )
+            console.log('unfollow sucess')
+            res.redirect(304, '/feed')
+            // how to refresh page aftwe a update in mongoose
+        } catch(err){
+            console.error(err)
+        }
+    },
 }

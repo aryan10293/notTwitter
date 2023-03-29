@@ -40,11 +40,13 @@
                 <h3>Who to follow</h3>
                 <ul class="ul-container">
                     <% for(let i = 0; i<3; i++) {%>
-                        <li class='li-container' data-id='<%=allUsers[i]._id%>'>
-                            <span><a href="/profile/<%=allUsers[i].userName%>"><%=allUsers[i].userName%></a></span>
-                            <button>Follow</button>
-                        </li>
-                     <% } %>
+                        <% if( !me.includes(allUsers[i]._id) ){ %>
+                            <li class='li-container' data-id='<%=allUsers[i]._id%>'>
+                                <span><a href="/profile/<%=allUsers[i].userName%>"><%=allUsers[i].userName%></a></span>
+                                <button class="follow">Follow</button>
+                            </li>
+                        <% } %>
+                     <% } %> 
                 </ul>
                 <!-- going to be a random users whoi logged in user doesnt follow -->
             </div>
