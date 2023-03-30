@@ -21,34 +21,26 @@
         </ul>
         <section class="post">
             <div class="header">
-                <h1>Welcome to <%=me.userName%>'s page</h1>
+                <h1> <%=me.userName%>'s followers</h1>
                 <p>@<%=me.userName%></p>
-                <div>
-                    <span><a href="/following">following</a> <%= me.following.length - 1 %></span>
-                    <span><a href="/following">followers</a> <%= me.followers.length - 1%></span>
-                </div>
             </div>
             <div id="post-links">
-                <a href="/profile">Tweets</a>
-                <a href="/likedPost">Liked Post</a>
+                <a href="/followers">Followers</a>
+                <a href="/following">Following</a>
             </div>
             <div class="lol">
-                <h2>Liked Post</h2>
+                <h2>Followers</h2>
             </div>
             <section class="post">
-                <% post.forEach( el => { %>
-                    <% if( user.includes(el._id) ){ %>
+                <% me.followers.forEach( el => { %>
                         <div class='container' data-id='<%=el._id%>'>
                             <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
-                            <p><%= el.text %></p>
-                            <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
-                            <% if( user.includes(el._id) ){ %>
-                                <button class="unlike">unlike <%= el.likes.length-1 %></button>
+                            <% if( !me.following.includes(el._id) ){ %>
+                                <button class="follow">Follow</button>
                             <% } else{ %>
-                                <button  class="like" >like <%= el.likes.length-1 %></button>
+                                <button  class="unfollow">Unfollow</button>
                             <% } %> %>
                         </div>
-                    <% } %>
                 <% }) %>   
             </section>
         </section>
