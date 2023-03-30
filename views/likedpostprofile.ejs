@@ -25,7 +25,7 @@
                 <p>@<%=me.userName%></p>
                 <div>
                     <span><a href="/following">following</a> <%= me.following.length - 1 %></span>
-                    <span><a href="/followers">followers</a> <%= me.followers.length - 1%></span>
+                    <span><a href="/following">followers</a> <%= me.followers.length - 1%></span>
                 </div>
             </div>
             <div id="post-links">
@@ -33,20 +33,22 @@
                 <a href="/likedPost">Liked Post</a>
             </div>
             <div class="lol">
-                <h2>Tweets</h2>
+                <h2>Liked Post</h2>
             </div>
             <section class="post">
                 <% post.forEach( el => { %>
-                    <div class='container' data-id='<%=el._id%>'>
-                        <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
-                        <p><%= el.text %></p>
-                        <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
-                        <% if( user.includes(el._id) ){ %>
-                            <button class="unlike">unlike <%= el.likes.length-1 %></button>
-                        <% } else{ %>
-                            <button  class="like" >like <%= el.likes.length-1 %></button>
-                        <% } %> %>
-                    </div>
+                    <% if( user.includes(el._id) ){ %>
+                        <div class='container' data-id='<%=el._id%>'>
+                            <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
+                            <p><%= el.text %></p>
+                            <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
+                            <% if( user.includes(el._id) ){ %>
+                                <button class="unlike">unlike <%= el.likes.length-1 %></button>
+                            <% } else{ %>
+                                <button  class="like" >like <%= el.likes.length-1 %></button>
+                            <% } %> %>
+                        </div>
+                    <% } %>
                 <% }) %>   
             </section>
         </section>
@@ -55,7 +57,7 @@
                 <h3>Who to follow</h3>
                 <ul class="ul-container">
                     <% for(let i = 0; i<allUsers.length; i++) {%>
-                        <% if( !me.following.includes(allUsers[i]._id) ){ %>
+                        <% if( !me.following.includes(allUsers[i]._id)  && `${allUsers[i]._id}` !== `${me._id}`){ %>
                             <li class='li-container' data-id='<%=allUsers[i]._id%>'>
                                 <span><a href="/profile/<%=allUsers[i].userName%>"><%=allUsers[i].userName%></a></span>
                                 <button class="follow">Follow</button>

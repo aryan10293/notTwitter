@@ -27,41 +27,44 @@ module.exports = {
     },
     getProfile: async (req,res) => {
         //sort from newest to oldedt
+        const allPeople = await User.find()
+         const me = await User.find({_id: req.user.id})
         const userPost = await Post.find({userId: req.user.id})
-        res.render("profile.ejs", {post: userPost })
+        const followersAndYourPosts = await Post.find()
+        const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
+        
+        res.render("profile.ejs", {post: userPost, user: me[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0]  })
+    },
+    getLikedFromProfile: async (req,res) => {
+        //sort from newest to oldedt
+        const allPeople = await User.find()
+         const me = await User.find({_id: req.user.id})
+        const userPost = await Post.find({userId: req.user.id})
+        const followersAndYourPosts = await Post.find()
+        const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
+        console.log(`${me[0]._id}` === `${allPeople[0]._id}`)
+        console.log(`${allPeople[0]._id}`)
+        res.render("likedpostprofile.ejs", {post: followersAndYourPosts , user: me[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0]  })
     },
     getFeed: async (req,res) => {
         //sort from newest to oldedt
         const allPeople = await User.find()
        // console.log(allPeople)
-       const me = await User.find({_id: req.user.id})
-       console.log(me[0].following)
+        const me = await User.find({_id: req.user.id})
         const followersAndYourPosts = await Post.find()
-        const blah = await User.find({_id: req.user.id})
-        console.log(me)
         const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
-        res.render("feed.ejs", {post: followersAndYourPosts, user: blah[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0] })
+        res.render("feed.ejs", {post: followersAndYourPosts, user: me[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0] })
     },
     getUser: async (req,res) => {
         const userPost = await Post.find({name: req.params.user})
         res.render("userProfile.ejs", {post: userPost })
     },
 }
-// set varibles in ejs
-
-// <!-- <% let user =  %>
-
-// let lol = <% user.filter( x => { %>
-//     <% if(x._id === el.userId) { %>
-//         <span><%=x.userName%></span>
-//     <%}
-
-//     <div class='container' data-id='<%=el._id%>'>
-//         <p><%= el.text %></p>
-//         <span><button><a href="/profile" class='del'> delete</a></button> </span>
-//         <span class="retweet"><a href="#">Retweet</a></span><span><%= el.retweets %></span>
-//         <span class="like"><a href="#">like</a></span><span><%= el.likes %></span>
-//     </div>
-// <% }) %>   
-
+// <% if( user.includes(el._id) ){ %>
+//     <button class="unlike">unlike <%= el.likes.length-1 %></button>
+// <% } else{ %>
+//     <button  class="like" >like <%= el.likes.length-1 %></button>
+// <% } %> %>
 // user.name  -->
+
+//!me.following.includes(allUsers[i]._id)   
