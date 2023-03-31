@@ -19,6 +19,7 @@ router.get('/:name/tweet/:id', ensureAuth, homeController.getTweetPost)
 router.get("/logout", authController.logout)
 
 router.get("/followers", homeController.getFollowers)
+router.get("/following", homeController.getFollowings)
 
 router.post('/createaccount', authController.postCreateAccount)
 router.post('/login', authController.postLogin)

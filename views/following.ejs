@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/main.js" defer></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <main class="container-profile">
+        <ul class="ul-nav">
+            <li class="nav"><a href="/feed" >Home</a></li>
+            <li class="nav"><a href="/explore" >Explore</a></li>
+            <li class="nav"><a href="/bookmarks" >Bookmarks</a></li>
+            <li class="nav"><a href="/profile" >Profile</a></li>
+            <li class="nav"><a href="/logout" >Logout</a></li>
+            <li class="nav tweet"><a href="/tweet" class="fuck">Tweet</a></li>
+        </ul>
+        <section class="post">
+            <div class="header">
+                <h1> <%=me.userName%>'s followers</h1>
+                <p>@<%=me.userName%></p>
+            </div>
+            <div id="post-links">
+                <a href="/followers">Followers</a>
+                <a href="/following">Following</a>
+            </div>
+            <div class="lol">
+                <h2>Following</h2>
+            </div>
+            <section class="post">
+                <% following.forEach( el => { %>
+                        <div class='container' data-id='<%=el[0]._id%>'>
+                            <span><a href="/profile/<%=el[0].name%>"><%=el[0].userName%></a></span>
+                            <% if( !me.following.includes(el[0]._id) ){ %>
+                                <button class="follow">Follow</button>
+                            <% } else{ %>
+                                <button  class="unfollow">Unfollow</button>
+                            <% } %> %>
+                        </div>
+                <% }) %>   
+            </section>
+        </section>
+        <section class="snookabutt">
+            <div class="follow-container">
+                <h3>Who to follow</h3>
+                <ul class="ul-container">
+                    <% for(let i = 0; i<allUsers.length; i++) {%>
+                        <% if( !me.following.includes(allUsers[i]._id)  && `${allUsers[i]._id}` !== `${me._id}`){ %>
+                            <li class='li-container' data-id='<%=allUsers[i]._id%>'>
+                                <span><a href="/profile/<%=allUsers[i].userName%>"><%=allUsers[i].userName%></a></span>
+                                <button class="follow">Follow</button>
+                            </li>
+                        <% } %>
+                     <% } %> 
+                </ul>
+                <!-- going to be a random users whoi logged in user doesnt follow -->
+            </div>
+            <div class="follow-container">
+                <h3>What's happening</h3>
+                <ul class="ul-container">
+                    <% for(let i = 0; i<4; i++) {%>
+                        <li class='li-container' data-id='<%=allUsers[i]._id%>'>
+                            <span><a href="/profile/<%=popular[i].userName%>"><%=popular[i].name%></a></span>
+                            <p><%=popular[i].text%></p>
+                            <button><a href="/<%=popular[i].name%>/tweet/<%=popular[i]._id%>">View tweet</a></button>
+                        </li>
+                     <% } %>
+            
+                </ul>
+                <!-- random tweets from users you dont follow-->
+            </div>
+        </section>
+    </main>
+    </body>
+</html>

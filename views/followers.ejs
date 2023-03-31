@@ -32,10 +32,10 @@
                 <h2>Followers</h2>
             </div>
             <section class="post">
-                <% me.followers.forEach( el => { %>
-                        <div class='container' data-id='<%=el._id%>'>
-                            <p><a href="/profile/<%=el.name%>"><%=el.name%></a></p>
-                            <% if( !me.following.includes(el._id) ){ %>
+                <% followers.forEach( el => { %>
+                        <div class='container' data-id='<%=el[0]._id%>'>
+                            <span><a href="/profile/<%=el[0].name%>"><%=el[0].userName%></a></span>
+                            <% if( !me.following.includes(el[0]._id) ){ %>
                                 <button class="follow">Follow</button>
                             <% } else{ %>
                                 <button  class="unfollow">Unfollow</button>
