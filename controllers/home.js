@@ -53,6 +53,7 @@ module.exports = {
         const me = await User.find({_id: req.user.id})
         const followersAndYourPosts = await Post.find()
         const popularPost = followersAndYourPosts.sort((a,b) => b.likes.length - a.likes.length)
+        console.log(popularPost[1])
         res.render("feed.ejs", {post: followersAndYourPosts, user: me[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0] })
     },
     getUser: async (req,res) => {
@@ -92,11 +93,3 @@ module.exports = {
        res.render("following.ejs", {post: followersAndYourPosts , user: me[0].likedPost, allUsers: allPeople.reverse(), popular: popularPost, me: me[0], following: obj,  })
     }  
 }
-// <% if( user.includes(el._id) ){ %>
-//     <button class="unlike">unlike <%= el.likes.length-1 %></button>
-// <% } else{ %>
-//     <button  class="like" >like <%= el.likes.length-1 %></button>
-// <% } %> %>
-// user.name  -->
-
-//!me.following.includes(allUsers[i]._id)   

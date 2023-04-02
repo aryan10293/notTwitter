@@ -20,6 +20,7 @@
             <li class="nav tweet"><a href="/tweet" class="fuck">Tweet</a></li>
         </ul>
         <section class="post">
+            <h1>NotTwitter Feed</h1>
             <% post.forEach( el => { %>
                 <% if( me.following.includes(el.userId) || el.userId == me._id ){ %>
                     <div class='container' data-id='<%=el._id%>'>
@@ -33,6 +34,11 @@
                             <button  class="like" >like <%= el.likes.length-1 %></button>
                         <% } %> %>
                         <a href="/<%=el.name%>/tweet/<%=el._id%>"><button>View Tweet</button></a>
+                        <% if( el.userId == me._id ){ %>
+                                <form action="/feed/delete/<%=el._id%>?_method=DELETE" method="POST">
+                                    <button type="submit" class="delete">Delete</button>
+                                </form>
+                            <% } %>
                     </div>
                 <% } %>
             <% }) %>   
@@ -56,6 +62,12 @@
                 <h3>What's happening</h3>
                 <ul class="ul-container">
                     <% for(let i = 0; i<4; i++) {%>
+                        <% if( popular.length == 0 ){ %>
+                            <p>Nothing is going on right now, <a href="/tweet">tweet</a> something to start a conversation </p>
+                        <% } %>
+                        <% if( popular[i] == undefined ){ %>
+                            <% break %> 
+                        <% } %>
                         <li class='li-container' data-id='<%=allUsers[i]._id%>'>
                             <span><a href="/profile/<%=popular[i].name%>"><%=popular[i].name%></a></span>
                             <p><%=popular[i].text%></p>

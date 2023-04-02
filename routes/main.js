@@ -30,4 +30,6 @@ router.put('/like', editController.addLike)
 router.put('/unlike', editController.unlike)
 router.put('/follow', editController.follow)
 router.put('/unfollow', editController.unfollow)
+
+router.delete('/feed/delete/:id', editController.delete)
 module.exports = router;

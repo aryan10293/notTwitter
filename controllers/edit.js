@@ -87,4 +87,14 @@ module.exports = {
             console.error(err)
         }
     },
+    delete: async (req,res) => {
+        try{
+            await Post.remove({_id: req.params.id})
+            console.log('deleted post sucess')
+            res.redirect('/feed')
+            // how to refresh page aftwe a update in mongoose
+        } catch(err){
+            console.error(err)
+        }
+    }
 }

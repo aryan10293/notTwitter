@@ -71,8 +71,14 @@
                 <h3>What's happening</h3>
                 <ul class="ul-container">
                     <% for(let i = 0; i<4; i++) {%>
+                        <% if( popular.length == 0 ){ %>
+                            <p>Nothing is going on right now, <a href="/tweet">tweet</a> something to start a conversation </p>
+                        <% } %>
+                        <% if( popular[i] == undefined ){ %>
+                            <% break %> 
+                        <% } %>
                         <li class='li-container' data-id='<%=allUsers[i]._id%>'>
-                            <span><a href="/profile/<%=popular[i].userName%>"><%=popular[i].name%></a></span>
+                            <span><a href="/profile/<%=popular[i].name%>"><%=popular[i].name%></a></span>
                             <p><%=popular[i].text%></p>
                             <button><a href="/<%=popular[i].name%>/tweet/<%=popular[i]._id%>">View tweet</a></button>
                         </li>
